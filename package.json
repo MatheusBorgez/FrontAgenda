@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && npm run server",
+    "server": "http-server public -p 3000",
+    "build": "npm run browserify && npm run uglify",
+    "browserify": "browserify src -t babelify -o public/js/app.js",
+    "uglify": "uglify -s public/js/app.js -o public/js/app.min.js"
   },
   "repository": {
     "type": "git",
