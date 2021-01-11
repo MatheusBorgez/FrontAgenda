@@ -1,0 +1,27 @@
+body {
+    background: #2575fc;
+    background: -webkit-linear-gradient(left, #6a11cb, #2575fc);
+    background: -o-linear-gradient(left, #6a11cb, #2575fc);
+    background: -moz-linear-gradient(left, #6a11cb, #2575fc);
+    background: linear-gradient(left, #6a11cb, #2575fc);
+}
+
+
+/*colors das grids do agendamento*/
+
+.back-grid {
+    background-color: black!important;
+}
+
+.back-gridrow1 {
+    background-color: white!important;
+}
+
+.back-gridrow2 {
+    background-color: #add8e6!important;
+}
+
+.centered {
+    margin: 0 auto !important;
+    float: none !important;
+}
