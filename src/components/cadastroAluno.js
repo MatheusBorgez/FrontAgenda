@@ -6,6 +6,7 @@ class CadastroAluno extends Agenda {
         super();
         this.body = body;
     }
+    
     render() {
         this.body.innerHTML = Template.render();
     }
