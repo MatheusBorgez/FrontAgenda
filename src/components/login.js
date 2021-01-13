@@ -1,5 +1,5 @@
-import Agenda from "../agenda.js";
-import Template from "../templates/login.js";
+const Agenda = require("./agenda.js");
+const Template = require("../templates/login.js");
 
 class Login extends Agenda {
     constructor(body) {

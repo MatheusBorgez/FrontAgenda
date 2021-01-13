@@ -1,5 +1,5 @@
-import TinyEmitter from "tiny-emitter";
-import Request from "browser-request";
+const TinyEmitter = require("tiny-emitter");
+const Request = require("browser-request");
 
 class Agenda extends TinyEmitter {
     constructor(){

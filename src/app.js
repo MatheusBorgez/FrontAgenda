@@ -1,5 +1,5 @@
-import Login from "./components/login.js";
-import CadastroAluno from "./components/cadastroAluno.js";
+const Login = require("./components/login.js");
+const CadastroAluno = require("./components/cadastroAluno.js");
 
 class App {
     constructor(body) {

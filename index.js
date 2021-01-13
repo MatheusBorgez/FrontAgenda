@@ -1,6 +1,7 @@
-import App from "./app.js";
+const App = require("./src/app.js");
 
 window.onload = () => {
+    debugger;
     const main = document.querySelector("main");
     new App(main).init();
 }
