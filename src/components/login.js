@@ -38,7 +38,7 @@ class Login extends Agenda {
                     this.emit("error", err);
                 }
                 else {
-                    this.emit("menu", data);
+                    this.emit("cadastroAluno", data);
                 }
             });
         });
