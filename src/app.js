@@ -14,7 +14,7 @@ class App {
 
     addEventListener() {
         this.loginEvents();
-        this.cadastroAluno();
+        //this.cadastroAlunoEvents();
     }
 
     loginEvents() {
