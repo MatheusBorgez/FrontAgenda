@@ -25,3 +25,12 @@ body {
     margin: 0 auto !important;
     float: none !important;
 }
+
+#telaLogin {
+    width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 5px 30px rgb(0, 0, 27);
+}
