@@ -1,7 +1,6 @@
-const App = require("./src/app.js");
+const App = require("./app.js");
 
 window.onload = () => {
-    debugger;
     const main = document.querySelector("main");
     new App(main).init();
 }
@@ -74,4 +73,3 @@ $("#cep").focusout(function() {
 });
 
 // Validação CPF
-$("#cpf").mask("999.999.999-99");

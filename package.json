@@ -2,13 +2,13 @@
   "name": "frontagenda",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "start": "npm run build && npm run server",
     "server": "http-server public -p 3000",
     "build": "npm run browserify && npm run uglify",
-    "browserify": "browserify src -t babelify -o public/js/app.js",
-    "uglify": "uglify -s public/js/app.js -o public/js/app.min.js"
+    "browserify": "browserify src -t babelify -o public/js/app.js -d",
+    "uglify": "uglify -s public/js/app.js -o public/js/app.js"
   },
   "repository": {
     "type": "git",

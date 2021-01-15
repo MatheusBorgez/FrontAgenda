@@ -18,7 +18,7 @@ class Login extends Agenda {
         this.esqueceuSenha();
     }
 
-    formSubmit() {
+    envieFormulario() {
         const form = this.body.querySelector("form");
         form.addEventListener("submit", (e) => {
             e.preventDefault();
