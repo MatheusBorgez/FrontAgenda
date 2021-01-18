@@ -36,7 +36,7 @@ body {
 }
 
 #divBusca {
-    background-color: #2F4F4F;
+    background-color: #fff;
     border: solid 1px;
     border-radius: 15px;
     width: 300px;
@@ -56,4 +56,78 @@ body {
 
 .busca img {
     height: 30px;
+}
+
+.imgSeta img {
+    height: 26px;
+}
+
+#esquerda {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.corFundoNav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    line-height: 100%;
+}
+
+.corFundoNav ul li {
+    margin: 0;
+    padding: 0;
+    line-height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.corFundoNav ul li a {
+    display: block;
+    border-radius: 3px;
+    color: #333;
+    background: none;
+    min-width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0 5px;
+}
+
+.corFundoNav ul li a:hover,
+.corFundoNav ul li a.selected {
+    background: #000000;
+    color: #fff;
+    text-decoration: none;
+}
+
+.corFundoNav ul li img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -3px;
+}
+
+.corFundoNav ul li a.next,
+.corFundoNav ul li a.prev {
+    background: transparent;
+    opacity: 0.5;
+}
+
+.corFundoNav ul li a.next:hover,
+.corFundoNav ul li a.prev:hover {
+    opacity: 1;
+}
+
+.corFundoNav ul li a.dots {
+    background: transparent;
+    color: #434343;
+}
+
+.corFundoNav ul li a.dots:hover {
+    color: #434343;
+    cursor: default;
 }
