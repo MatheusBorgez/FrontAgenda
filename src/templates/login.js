@@ -1,38 +1,29 @@
 exports.render = () => {
-    return ` <div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100 p-b-160 p-t-50">
-            <main></main>
-            <footer></footer>
-            <form class="login100-form">
-                <span class="login100-form-title p-b-43">
-                    Acesso da Conta
-                </span>
-
-                <div class="wrap-input100 rs1 validate-input" data-validate="Campo obrigatório">
-                    <input class="input100" type="text" usuario>
-                    <span class="label-input100">Usuário</span>
-                </div>
+    return ` <body>
+    <label class="login100-form-title p-b-43 p-t-80">Acesso da Conta</label>
+    <div class="card" id="telaLogin">       
+        <main>        
+            <div class="card-body">
+                <form>
+                    <div class="form-group rs1 validate-input" data-validate="Campo obrigatório">
+                        <input type="text" class="form-control" id="" placeholder="Usuário" usuario>
+                    </div>
 
 
-                <div class="wrap-input100 rs2 validate-input" data-validate="Campo obrigatório">
-                    <input class="input100" type="password" senha>
-                    <span class="label-input100">Senha</span>
-                </div>
+                    <div class="form-group rs2 validate-input" data-validate="Campo obrigatório">
+                        <input type="password" class="form-control" id="" placeholder="Senha" senha>
+                    </div>
 
-                <div class="container-login100-form-btn">
-                    <button class="mt-3" botaoLogin>
-                        Entrar
-                    </button>
-                </div>
-
-                <div class="text-center w-full p-t-23">
-                    <a href="#" class="txt1">
-                        Esqueceu a Senha? Entre em Contato Conosco.
-                    </a>
-                </div>
-            </form>
-        </div>
+                    <button type="submit" class="btn btn-primary btn btn-outline-dark btn-lg btn-block" href="menu.html" botaoLogin>Entrar</button>
+                    <div class="text-center w-full p-t-23">
+                        <a href="#" class="text-secondary">
+		    					Esqueceu a Senha? Entre em Contato Conosco Clicando Aqui.
+		    				</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <footer></footer>
     </div>
-</div>`
+</body>`
 }

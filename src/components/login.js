@@ -9,6 +9,7 @@ class Login extends Agenda {
 
     render() {
         this.body.innerHTML = Template.render();
+        debugger;
         this.body.querySelector("[usuario]").focus();
         this.addEventListener();
     }
@@ -26,7 +27,7 @@ class Login extends Agenda {
             const senha = e.target.querySelector("[senha]");
             const opts = {
                 method: "POST",
-                url: `${this.URL}`,
+                url: `${this.URL}/Login`,
                 json: true,
                 body: {
                     usuario: usuario.value,
@@ -36,6 +37,7 @@ class Login extends Agenda {
             this.request(opts, (err, resp, data) => {
                 if (err || resp.status === 401) {
                     this.emit("error", err);
+                    alert("Usuário ou senha incorretos");
                 }
                 else {
                     this.emit("cadastroAluno", data);
