@@ -48,8 +48,6 @@ class Login extends Agenda {
 
     logaUsuario(resp, err, data) {
 
-        debugger;
-
         if (resp.status !== 200) {
             this.emit("error", err);
         }

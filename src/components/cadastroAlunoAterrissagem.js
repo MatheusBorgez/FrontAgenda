@@ -1,7 +1,7 @@
 const Agenda = require("./agenda");
-const Template = require("../templates/cadastroAluno");
+const Template = require("../templates/cadastroAlunoAterrissagem");
 
-class CadastroAluno extends Agenda {
+class CadastroAlunoAterrissagem extends Agenda {
     constructor(body) {
         super();
         this.body = body;
