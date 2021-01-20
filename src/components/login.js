@@ -9,7 +9,6 @@ class Login extends Agenda {
 
     render() {
         this.body.innerHTML = Template.render();
-        debugger;
         this.body.querySelector("[usuario]").focus();
         this.addEventListener();
     }
@@ -25,30 +24,43 @@ class Login extends Agenda {
             e.preventDefault();
             const usuario = e.target.querySelector("[usuario]");
             const senha = e.target.querySelector("[senha]");
-            const opts = {
-                method: "POST",
-                url: `${this.URL}/Login`,
-                json: true,
-                body: {
-                    usuario: usuario.value,
-                    password: senha.value
-                }
-            };
-            this.request(opts, (err, resp, data) => {
-                if (err || resp.status === 401) {
-                    this.emit("error", err);
-                    alert("Usuário ou senha incorretos");
-                }
-                else {
-                    this.emit("cadastroAluno", data);
-                }
-            });
+            this.autentiqueUsuario(usuario, senha);
         });
+    }
+
+    autentiqueUsuario(usuario, senha) {
+        
+        const opts = {
+            method: "POST",
+            url: `${this.URL}/Login`,
+            json: true,
+            body: {
+                login: usuario.value,
+                senha: senha.value
+            }
+        };       
+
+        this.request(opts, (err, resp, data) => {
+            
+            this.logaUsuario(resp, err, data);
+        });
+    }
+
+    logaUsuario(resp, err, data) {
+
+        debugger;
+
+        if (resp.status !== 200) {
+            this.emit("error", err);
+        }
+        else {
+            this.emit("login", data);
+        }
     }
 
     esqueceuSenha() {
         //codigo pra chamar em URL
-    }
+    }    
 }
 
 module.exports = Login;
