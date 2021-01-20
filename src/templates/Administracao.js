@@ -1,4 +1,4 @@
-module.render = () => {
+exports.render = () => {
     return ` <div class="container ">
     <div>
         <span class="login100-form-title p-b-43 p-2 mt-2">
@@ -68,5 +68,5 @@ module.render = () => {
                 </div>
 
             </div>
-</div>`;
+</div>`
 }

@@ -1,5 +1,5 @@
 const Login = require("./components/login.js");
-const CadastroAluno = require("./components/cadastroAluno.js");
+const Administracao = require("./components/Administracao.js");
 
 class App {
     constructor(body) {
