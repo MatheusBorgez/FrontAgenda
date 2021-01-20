@@ -25,5 +25,5 @@ exports.render = () => {
         </main>
         <footer></footer>
     </div>
-</body>`
+</body>`;
 }
