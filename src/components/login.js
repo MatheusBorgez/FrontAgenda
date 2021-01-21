@@ -29,7 +29,7 @@ class Login extends Agenda {
     }
 
     autentiqueUsuario(usuario, senha) {
-        
+
         const opts = {
             method: "POST",
             url: `${this.URL}/Login`,
@@ -38,10 +38,10 @@ class Login extends Agenda {
                 login: usuario.value,
                 senha: senha.value
             }
-        };       
+        };
 
         this.request(opts, (err, resp, data) => {
-            
+
             this.logaUsuario(resp, err, data);
         });
     }
@@ -52,13 +52,21 @@ class Login extends Agenda {
             this.emit("error", err);
         }
         else {
-            this.emit("login", data);
+            
+            debugger;
+
+            if (data.admin) {
+                this.emit("loginAdmin", data);
+            }
+            else {
+                this.emit("loginAluno", data);
+            }
         }
     }
 
     esqueceuSenha() {
         //codigo pra chamar em URL
-    }    
+    }
 }
 
 module.exports = Login;
