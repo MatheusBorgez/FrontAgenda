@@ -1,5 +1,9 @@
 exports.render = () => {
-    return ` <div class="container ">
+    return `<div class="img-fluid text-right botaoShutdown mr-5 mt-5" botaoShutdown>
+    <a href="#"><img src="./images/shutdown.png" alt=""></a>
+    <strong class="mr-1">Sair</strong>
+</div>
+    <div class="container ">
     <div>
         <span class="login100-form-title p-b-43 p-2 mt-2">
             Área Administrativa
