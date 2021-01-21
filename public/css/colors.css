@@ -131,3 +131,8 @@ body {
     color: #434343;
     cursor: default;
 }
+
+.botaoShutdown img {
+    height: 40px;
+    width: 40px;
+}
