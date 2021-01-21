@@ -51,9 +51,7 @@ class Login extends Agenda {
         if (resp.status !== 200) {
             this.emit("error", err);
         }
-        else {
-            
-            debugger;
+        else {            
 
             if (data.admin) {
                 this.emit("loginAdmin", data);
