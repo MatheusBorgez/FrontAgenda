@@ -26,7 +26,7 @@ class App {
     }
 
     administracaoEvents() {
-        //this.administracao.addEventListener("Load", );
+        //this.administracao.on("preenchaGrid", );
     }
 }
 
