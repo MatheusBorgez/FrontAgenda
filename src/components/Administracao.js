@@ -1,5 +1,6 @@
 const Agenda = require("./agenda.js");
 const Template = require("../templates/administracao.js");
+const TemplateModal = require("../templates/cadastroAluno.js");
 const Login = require("./login.js");
 const CadastroAluno = require("./cadastroAluno.js");
 
@@ -12,9 +13,7 @@ class Administracao extends Agenda {
     }
 
     render() {
-        this.body.innerHTML = Template.render();
-        this.addEventListener();
-        this.monteGrid();
+        this.renderGridAlunos();
     }
 
     addEventListener() {
@@ -34,7 +33,7 @@ class Administracao extends Agenda {
         this.cadastroAluno.render();
     }
 
-    monteGrid() {
+    renderGridAlunos() {
         const opts = {
             method: "GET",
             url: `${this.URL}/administracao`,
@@ -42,7 +41,13 @@ class Administracao extends Agenda {
         };
 
         this.request(opts, (err, resp, data) => {
-            //mostraAlunos(data);
+            if (err) {
+                this.emit("error", "não foi possível carregar os alunos");
+            }
+            else {
+                this.body.innerHTML = Template.render(data.alunos);
+                this.addEventListener();
+            }
         });
     }
 }
