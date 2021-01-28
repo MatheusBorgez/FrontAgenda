@@ -58,17 +58,25 @@ exports.render = alunos => {
 
         ${renderGridAlunos(alunos)}
 
-        <button type="button" class="btn btn-primary btn-dark" botaoAdicionar>
-            Adicionar
-        </button>
+        <div class="container col-sm mt-3">
+            <div class="row">
+                <div class="centered">
+                                
+                    <button type="button" class="btn btn-primary btn-dark" botaoAdicionar>
+                        Adicionar
+                    </button>
 
-        <button type="button" class="btn btn-dark" botaoEditar>
-            Editar
-        </button>
+                    <button type="button" class="btn btn-dark" botaoEditar>
+                        Editar
+                    </button>
 
-        <button type="button" class="btn btn-dark" botaoExcluir>
-            Excluir
-        </button>
+                    <button type="button" class="btn btn-dark" botaoExcluir>
+                        Excluir
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
     </div>
     `; 
 }
