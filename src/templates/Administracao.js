@@ -27,7 +27,7 @@ const renderGridAlunos = alunos => {
 exports.render = alunos => {
     
     return `
-    <div class="img-fluid text-right botaoShutdown mr-5 mt-5" botaoShutdown>
+    <div class="img-fluid text-right botaoShutdown mr-5 mt-5 text-white">
         <a href="#"><img src="./images/shutdown.png" alt=""></a>
         <strong class="mr-1">Sair</strong>
     </div>
