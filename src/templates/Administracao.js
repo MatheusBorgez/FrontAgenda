@@ -1,7 +1,10 @@
 const renderGridAlunos = alunos => {
     return alunos.map(aluno => {
+
+        let corLinha = aluno.id % 2 === 0 ? "back-gridrow1" : "back-gridrow2";
+
         return `
-        <div class="row back-gridrow1 text-dark">
+        <div class="row ${corLinha} text-dark">
             <div codigoAluno=${aluno.id}></div>
             <div class="col-sm">
                 <div class="form-group form-check">
@@ -29,7 +32,7 @@ exports.render = alunos => {
         <strong class="mr-1">Sair</strong>
     </div>
     
-    <div class="container ">
+    <div class="container">
         <div>
             <span class="login100-form-title p-b-43 p-2 mt-2">
                 Área Administrativa
@@ -37,32 +40,35 @@ exports.render = alunos => {
         </div>
     </div>
 
-    <div class="row  border border-white back-grid text-white">
-        <div class="col-sm text-center">
-            Nome
+    <div class="container">
+    
+        <div class="row  border border-white back-grid text-white">
+            <div class="col-sm text-center">
+                Nome
+            </div>
+
+            <div class="col-sm text-center">
+                CPF
+            </div>
+
+            <div class="col-sm text-center">
+                Matrícula
+            </div>
         </div>
-        
-        <div class="col-sm text-center">
-            CPF
-        </div>
-        
-        <div class="col-sm text-center">
-            Matrícula
-        </div>
+
+        ${renderGridAlunos(alunos)}
+
+        <button type="button" class="btn btn-primary btn-dark" botaoAdicionar>
+            Adicionar
+        </button>
+
+        <button type="button" class="btn btn-dark" botaoEditar>
+            Editar
+        </button>
+
+        <button type="button" class="btn btn-dark" botaoExcluir>
+            Excluir
+        </button>
     </div>
-
-    ${renderGridAlunos(alunos)}
-
-    <button type="button" class="btn btn-primary btn-dark" botaoAdicionar>
-        Adicionar
-    </button>
-                
-    <button type="button" class="btn btn-dark" botaoEditar>
-        Editar
-    </button>
-                
-    <button type="button" class="btn btn-dark" botaoExcluir>
-        Excluir
-    </button>
     `; 
 }
