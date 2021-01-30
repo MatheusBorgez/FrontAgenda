@@ -1,76 +1,87 @@
-exports.render = () => {
-    return `  <div class="img-fluid text-right botaoShutdown mr-5 mt-5 text-white">
-    <a href="#"><img src="./images/shutdown.png" alt=""></a>
-    <strong class="mr-1">Sair</strong>
-</div>
-<div>
-    <div class="container ">
-        <span class="login100-form-title p-b-43 ">
-             Área Administrativa
-       </span>
+const ModalCadastroAluno = require("./cadastroAluno.js");
+
+const renderGridAlunos = alunos => {
+    return alunos.map(aluno => {
+
+        let corLinha = aluno.id % 2 === 0 ? "back-gridrow1" : "back-gridrow2";
+
+        return `
+        <div class="row ${corLinha} text-dark">
+            <div codigoAluno=${aluno.id}></div>
+            <div class="col-sm">
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input mt-4" id="exampleCheck1">
+                </div>
+                <label class="text-center mb-2">${aluno.nome}</label>
+            </div>
+        
+            <div class="col-sm ">
+                <label class="text-center mt-3">${aluno.cpf}</label>
+            </div>
+        
+            <div class="col-sm ">
+                <label class="text-center mt-3">${aluno.matricula}</label>
+            </div>        
+        </div>`
+    }).join("");
+}
+
+exports.render = alunos => {
+    
+    return `
+
+    <div class="img-fluid text-right mr-5 mt-5 text-white botaoShutdown" botaoShutdown>
+        <a href="#"><img src="./images/shutdown.png" alt=""></a>
+        <strong class="mr-1">Sair</strong>
+    </div>
+    
+    <div class="container">
+        <div>
+            <span class="login100-form-title p-b-43 p-2 mt-2">
+                Área Administrativa
+            </span>
+        </div>
     </div>
 
-
-
-    <div class="container ">
-
-        <div class="row ">
-            <div class="col-sm">
-                <div id="divBusca" class="busca">
-                    <input type="text" id="txtBusca" placeholder="Buscar..." />
-                    <a class="" href="#">
-                        <img src="./images/pesquisa.png" id="btnBusca" alt="Buscar" />
-                    </a>
-                </div>
-            </div>
-        </div>
-
+    <div class="container">
+    
         <div class="row  border border-white back-grid text-white">
             <div class="col-sm text-center">
                 Nome
-
             </div>
+
             <div class="col-sm text-center">
                 CPF
             </div>
+
             <div class="col-sm text-center">
                 Matrícula
             </div>
         </div>
 
-        <div class="row back-gridrow1 text-dark">
-            <div class="col-sm">
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input mt-4" id="exampleCheck1">
+        ${renderGridAlunos(alunos)}
+
+        <div class="container col-sm mt-3">
+            <div class="row">
+                <div class="centered">
+                                
+                    <button type="button" class="btn btn-primary btn-dark" data-toggle="modal" data-target="#modalCadastroAluno" botaoAdicionar>
+                        Adicionar
+                    </button>
+
+                    <button type="button" class="btn btn-dark" botaoEditar>
+                        Editar
+                    </button>
+
+                    <button type="button" class="btn btn-dark" botaoExcluir>
+                        Excluir
+                    </button>
+
+                    ${ModalCadastroAluno.render()}
+                    
                 </div>
-                <label class="text-center mb-2">Nome do Aluno</label>
             </div>
-
-            <div class="col-sm ">
-                <label class="text-center mt-3">___.___.___-__</label>
-            </div>
-
-            <div class="col-sm ">
-                <label class="text-center mt-3">202101151247</label>
-            </div>
-
         </div>
-
-        <div class="row back-gridrow2 text-dark">
-            <div class="col-sm">
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input mt-4" id="exampleCheck1">
-                </div>
-                <label class="text-center mb-2">Nome do Aluno</label>
-            </div>
-
-            <div class="col-sm ">
-                <label class="text-center mt-3">___.___.___-__</label>
-            </div>
-
-            <div class="col-sm ">
-                <label class="text-center mt-3">202101151247</label>
-            </div>
-
-        </div>`
+    </div>    
+    `; 
 }
