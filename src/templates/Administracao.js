@@ -1,4 +1,3 @@
-const Header = require("./header.js");
 const ModalCadastroAluno = require("./cadastroAluno.js");
 
 const renderGridAlunos = alunos => {
@@ -30,8 +29,6 @@ const renderGridAlunos = alunos => {
 exports.render = alunos => {
     
     return `
-
-    ${Header.render()}
 
     <div class="img-fluid text-right mr-5 mt-5 text-white botaoShutdown" botaoShutdown>
         <a href="#"><img src="./images/shutdown.png" alt=""></a>
@@ -86,6 +83,5 @@ exports.render = alunos => {
             </div>
         </div>
     </div>    
-
     `; 
 }
