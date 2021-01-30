@@ -5,6 +5,7 @@ const Login = require("./login.js");
 const CadastroAluno = require("./cadastroAluno.js");
 
 class Administracao extends Agenda {
+
     constructor(body) {
         super();
         this.body = body;
@@ -14,12 +15,13 @@ class Administracao extends Agenda {
 
     render() {
         this.renderGridAlunos();
+        this.ehEdicao = false;
     }
 
     addEventListener() {
         this.logout();
         this.clickBotaoAdicionar();
-        // this.clickBotaoEditar();
+        this.clickBotaoEditar();
         // this.clickBotaoExcluir();
     }
 
@@ -28,11 +30,25 @@ class Administracao extends Agenda {
     }
 
     clickBotaoAdicionar() {
-        this.body.querySelector("[botaoAdicionar]").onclick = () => document.getElementById('modalCadastroAluno').modal({show: true});
+
+        this.ehEdicao = false;
     }
 
-    chameModal() {
-        this.cadastroAluno.render();
+    clickBotaoEditar() {
+
+        this.ehEdicao = true;
+    }
+    
+    salveAluno() {
+        if (this.ehEdicao) {
+
+            
+
+            this.cadastroAluno.editeAluno();
+        }
+        else {
+            this.cadastroAluno.insiraAluno();
+        }
     }
 
     renderGridAlunos() {
