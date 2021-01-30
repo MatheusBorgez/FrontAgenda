@@ -35,8 +35,8 @@ const inputEndereco = `
 `;
 
 const modalCadastroAluno = `
-<div class="modal fade" id="modalCadastroAluno" tabindex="-1" role="dialog" aria-labelledby="tituloModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="modalCadastroAluno" tabindex="-1" role="dialog" aria-labelledby="tituloModal" aria-hidden="true" modal>
+    <div class="modal-dialog modal-dialog-centered" role="document" >
         <div class="modal-content">
             
             <div class="modal-header">

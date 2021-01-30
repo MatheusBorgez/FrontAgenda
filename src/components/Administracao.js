@@ -28,7 +28,7 @@ class Administracao extends Agenda {
     }
 
     clickBotaoAdicionar() {
-        this.body.querySelector("[botaoAdicionar]").onclick = () => document.getElementById('modalCadastroAluno').modal('toggle');
+        this.body.querySelector("[botaoAdicionar]").onclick = () => document.getElementById('modalCadastroAluno').modal({show: true});
     }
 
     chameModal() {
