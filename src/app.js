@@ -1,5 +1,5 @@
 const Login = require("./components/login.js");
-const Administracao = require("./components/Administracao.js");
+const Administracao = require("./components/administracao.js");
 const Menu = require("./components/menu.js");
 
 class App {

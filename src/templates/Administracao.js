@@ -1,3 +1,6 @@
+const Header = require("./header.js");
+const ModalCadastroAluno = require("./cadastroAluno.js");
+
 const renderGridAlunos = alunos => {
     return alunos.map(aluno => {
 
@@ -27,7 +30,10 @@ const renderGridAlunos = alunos => {
 exports.render = alunos => {
     
     return `
-    <div class="img-fluid text-right botaoShutdown mr-5 mt-5 text-white">
+
+    ${Header.render()}
+
+    <div class="img-fluid text-right mr-5 mt-5 text-white botaoShutdown" botaoShutdown>
         <a href="#"><img src="./images/shutdown.png" alt=""></a>
         <strong class="mr-1">Sair</strong>
     </div>
@@ -62,7 +68,7 @@ exports.render = alunos => {
             <div class="row">
                 <div class="centered">
                                 
-                    <button type="button" class="btn btn-primary btn-dark" botaoAdicionar>
+                    <button type="button" class="btn btn-primary btn-dark" data-toggle="modal" data-target="#modalCadastroAluno" botaoAdicionar>
                         Adicionar
                     </button>
 
@@ -73,10 +79,13 @@ exports.render = alunos => {
                     <button type="button" class="btn btn-dark" botaoExcluir>
                         Excluir
                     </button>
+
+                    ${ModalCadastroAluno.render()}
                     
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
+
     `; 
 }

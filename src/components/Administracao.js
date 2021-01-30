@@ -18,15 +18,17 @@ class Administracao extends Agenda {
 
     addEventListener() {
         this.logout();
-        this.modalCadastroAluno();
+        this.clickBotaoAdicionar();
+        // this.clickBotaoEditar();
+        // this.clickBotaoExcluir();
     }
 
     logout() {
-        this.body.querySelector("[botaoShutdown]").onClick = () => this.login.render();
+        this.body.querySelector("[botaoShutdown]").onclick = () => this.login.render();
     }
 
-    modalCadastroAluno() {
-        this.body.querySelector("[botaoAdicionar]").onClick = this.chameModal();
+    clickBotaoAdicionar() {
+        this.body.querySelector("[botaoAdicionar]").onclick = () => document.getElementById('modalCadastroAluno').modal('toggle');
     }
 
     chameModal() {
