@@ -15,7 +15,7 @@ class Administracao extends Agenda {
     }
 
     render() {
-        this.renderGridAlunos();                
+        this.renderGridAlunos();
     }
 
     addEventListener() {
@@ -43,14 +43,25 @@ class Administracao extends Agenda {
 
     clickBotaoAdicionar() {
 
-        this.body.querySelector("[botaoAdicionar]").onclick = () => this.ehEdicao = false;        
+        this.body.querySelector("[botaoAdicionar]").onclick = () => this.ehEdicao = false;
     }
 
     clickBotaoEditar() {
 
         this.body.querySelector("[botaoEditar]").onclick = () => this.ehEdicao = true;
+
+        let alunosSelecionados = this.body.querySelectorAll("[alunoSelecionado]");
+
+        if (alunosSelecionados.lenght === 1) {
+            const modal = this.body.getElementById("modalCadastroAluno");
+            modal.modal('show');
+            this.cadastroAluno.preenchaModalEdicao(alunosSelecionados[0].getAttribute("codigoaluno"));
+        }
+        else {
+            alert("Selecione apenas um aluno para edição por favor!");
+        }
     }
-    
+
     obtenhaDadosModal(e) {
 
         const cpf = e.target.querySelector("[cpf]").value;
@@ -64,12 +75,12 @@ class Administracao extends Agenda {
             matricula: this.gereMatricula(cpf)
         };
 
-        return aluno;        
+        return aluno;
     }
 
     insiraOuEditeAluno(aluno) {
 
-        if (this.ehEdicao) { 
+        if (this.ehEdicao) {
             this.cadastroAluno.editeAluno(aluno);
         }
         else {
@@ -77,7 +88,7 @@ class Administracao extends Agenda {
         }
 
         this.renderGridAlunos();
-    }    
+    }
 
     renderGridAlunos() {
         const opts = {
@@ -99,9 +110,9 @@ class Administracao extends Agenda {
 
     monteEndereco(target) {
         return target.querySelector("[cidade]").value + " " +
-               target.querySelector("[bairro]").value + " " +
-               target.querySelector("[numero]").value + " " +
-               target.querySelector("[complemento]").value;
+            target.querySelector("[bairro]").value + " " +
+            target.querySelector("[numero]").value + " " +
+            target.querySelector("[complemento]").value;
     }
 
     gereMatricula(cpf) {
