@@ -20,6 +20,7 @@ class Login extends Agenda {
 
     envieFormulario() {
         const form = this.body.querySelector("form");
+
         form.addEventListener("submit", (e) => {
             e.preventDefault();
             const usuario = e.target.querySelector("[usuario]");
@@ -29,7 +30,6 @@ class Login extends Agenda {
     }
 
     autentiqueUsuario(usuario, senha) {
-
         const opts = {
             method: "POST",
             url: `${this.URL}/Login`,

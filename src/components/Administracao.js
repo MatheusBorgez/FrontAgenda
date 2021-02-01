@@ -11,15 +11,16 @@ class Administracao extends Agenda {
         this.body = body;
         this.login = new Login(body);
         this.cadastroAluno = new CadastroAluno(body);
+        this.ehEdicao = false;
     }
 
     render() {
-        this.renderGridAlunos();
-        this.ehEdicao = false;
+        this.renderGridAlunos();                
     }
 
     addEventListener() {
         this.logout();
+        this.clickBotaoSalvar();
         this.clickBotaoAdicionar();
         this.clickBotaoEditar();
         // this.clickBotaoExcluir();
@@ -29,27 +30,54 @@ class Administracao extends Agenda {
         this.body.querySelector("[botaoShutdown]").onclick = () => this.login.render();
     }
 
+    clickBotaoSalvar() {
+
+        const form = this.body.querySelector("form");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const aluno = this.obtenhaDadosModal(e);
+            this.insiraOuEditeAluno(aluno);
+        });
+    }
+
     clickBotaoAdicionar() {
 
-        this.ehEdicao = false;
+        this.body.querySelector("[botaoAdicionar]").onclick = () => this.ehEdicao = false;        
     }
 
     clickBotaoEditar() {
 
-        this.ehEdicao = true;
+        this.body.querySelector("[botaoEditar]").onclick = () => this.ehEdicao = true;
     }
     
-    salveAluno() {
-        if (this.ehEdicao) {
+    obtenhaDadosModal(e) {
 
-            
+        const cpf = e.target.querySelector("[cpf]").value;
 
-            this.cadastroAluno.editeAluno();
+        const aluno = {
+            nome: e.target.querySelector("[nome]").value,
+            cpf: cpf,
+            telefone: e.target.querySelector("[telefone]").value,
+            email: e.target.querySelector("[email]").value,
+            endereco: this.monteEndereco(e.target),
+            matricula: this.gereMatricula(cpf)
+        };
+
+        return aluno;        
+    }
+
+    insiraOuEditeAluno(aluno) {
+
+        if (this.ehEdicao) { 
+            this.cadastroAluno.editeAluno(aluno);
         }
         else {
-            this.cadastroAluno.insiraAluno();
+            this.cadastroAluno.insiraAluno(aluno);
         }
-    }
+
+        this.renderGridAlunos();
+    }    
 
     renderGridAlunos() {
         const opts = {
@@ -67,6 +95,20 @@ class Administracao extends Agenda {
                 this.addEventListener();
             }
         });
+    }
+
+    monteEndereco(target) {
+        return target.querySelector("[cidade]").value + " " +
+               target.querySelector("[bairro]").value + " " +
+               target.querySelector("[numero]").value + " " +
+               target.querySelector("[complemento]").value;
+    }
+
+    gereMatricula(cpf) {
+        const data = new Date();
+        const ano = data.getFullYear();
+        const segundos = data.getSeconds();
+        return ano + cpf.slice(8) + segundos;
     }
 }
 

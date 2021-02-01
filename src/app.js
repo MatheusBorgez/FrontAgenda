@@ -23,6 +23,8 @@ class App {
         this.login.on("error", () => alert("Usuario ou senha incorretos"));
         this.login.on("loginAdmin", () => this.administracao.render());
         this.login.on("loginAluno", () => this.menu.render());
+        this.login.on("alunoNaoInserido", () => alert("Ops, o aluno não pode ser inserido"));
+        this.login.on("alunoInseridoSucesso", () => alert("Aluno inserido com sucesso"));
     }
 
     administracaoEvents() {
