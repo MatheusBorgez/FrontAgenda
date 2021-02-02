@@ -6,11 +6,10 @@ const renderGridAlunos = alunos => {
         let corLinha = aluno.id % 2 === 0 ? "back-gridrow1" : "back-gridrow2";
 
         return `
-        <div class="row ${corLinha} text-dark">
-            <div codigoAluno=${aluno.id}></div>
+        <div class="row ${corLinha} text-dark">            
             <div class="col-sm">
                 <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input mt-4" id="exampleCheck1">
+                    <input type="checkbox" class="form-check-input mt-4" alunoSelecionado codigoAluno=${aluno.id}>
                 </div>
                 <label class="text-center mb-2">${aluno.nome}</label>
             </div>

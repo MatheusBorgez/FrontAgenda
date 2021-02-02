@@ -11,43 +11,115 @@ class Administracao extends Agenda {
         this.body = body;
         this.login = new Login(body);
         this.cadastroAluno = new CadastroAluno(body);
+        this.ehEdicao = false;
     }
 
     render() {
         this.renderGridAlunos();
-        this.ehEdicao = false;
     }
 
     addEventListener() {
         this.logout();
+        this.clickBotaoSalvar();
         this.clickBotaoAdicionar();
-        this.clickBotaoEditar();
-        // this.clickBotaoExcluir();
+        this.botaoEditar();
+        this.clickBotaoExcluir();
     }
 
     logout() {
         this.body.querySelector("[botaoShutdown]").onclick = () => this.login.render();
     }
 
+    clickBotaoExcluir() {
+        this.body.querySelector("[botaoExcluir]").onclick = () => this.excluaAluno();
+    }    
+
+    clickBotaoSalvar() {
+
+        const form = this.body.querySelector("form");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const aluno = this.obtenhaDadosModal(e);
+            this.insiraOuEditeAluno(aluno);
+        });
+    }
+
     clickBotaoAdicionar() {
 
-        this.ehEdicao = false;
+        this.body.querySelector("[botaoAdicionar]").onclick = () => this.ehEdicao = false;
+    }
+
+    botaoEditar() {
+
+        this.body.querySelector("[botaoEditar]").onclick = () => this.clickBotaoEditar()
     }
 
     clickBotaoEditar() {
 
         this.ehEdicao = true;
-    }
-    
-    salveAluno() {
-        if (this.ehEdicao) {
 
-            
+        let alunosSelecionados = this.obtenhaAlunosSelecionados();
 
-            this.cadastroAluno.editeAluno();
+        if (alunosSelecionados.length === 0) {
+            return;
+        }
+
+        if (alunosSelecionados.length === 1) {            
+            this.alunoSelecionado = alunosSelecionados[0].getAttribute("codigoaluno");
+            this.cadastroAluno.preenchaModalEdicao(this.alunoSelecionado);
         }
         else {
-            this.cadastroAluno.insiraAluno();
+            alert("Selecione apenas um aluno para edição por favor!");
+        }
+    }
+
+    obtenhaDadosModal(e) {
+
+        const cpf = e.target.querySelector("[cpf]").value;
+
+        const aluno = {
+            nome: e.target.querySelector("[nome]").value,
+            cpf: cpf,
+            telefone: e.target.querySelector("[telefone]").value,
+            email: e.target.querySelector("[email]").value,
+            endereco: this.monteEndereco(e.target),
+            matricula: this.gereMatricula(cpf)
+        };
+
+        return aluno;
+    }
+
+    insiraOuEditeAluno(aluno) {
+
+        debugger;
+
+        if (this.ehEdicao) {
+            this.cadastroAluno.editeAluno(aluno, this.alunoSelecionado);
+        }
+        else {
+            this.cadastroAluno.insiraAluno(aluno);
+        }
+
+        this.renderGridAlunos();
+    }
+
+    excluaAluno() {
+
+        debugger;
+
+        let alunosSelecionados = this.obtenhaAlunosSelecionados();
+
+        if (alunosSelecionados.length === 0) {
+            return;
+        }
+
+        if (alunosSelecionados.length === 1) {            
+            this.alunoSelecionado = alunosSelecionados[0].getAttribute("codigoaluno");
+            this.cadastroAluno.excluaAluno(this.alunoSelecionado);
+        }
+        else {
+            alert("Selecione apenas um aluno para edição por favor!");
         }
     }
 
@@ -67,6 +139,30 @@ class Administracao extends Agenda {
                 this.addEventListener();
             }
         });
+    }
+
+    obtenhaAlunosSelecionados() {
+        
+        function estaSelecionado(aluno) {
+            return aluno.checked;
+        }
+
+        let alunos = Array.prototype.slice.call(this.body.querySelectorAll("[alunoSelecionado]"));
+        return alunos.filter(estaSelecionado);
+    }
+
+    monteEndereco(target) {
+        return target.querySelector("[cidade]").value + "\n" +
+            target.querySelector("[bairro]").value + "\n" +
+            target.querySelector("[numero]").value + "\n" +
+            target.querySelector("[complemento]").value;
+    }
+
+    gereMatricula(cpf) {
+        const data = new Date();
+        const ano = data.getFullYear();
+        const segundos = data.getSeconds();
+        return ano + cpf.slice(8) + segundos;
     }
 }
 
