@@ -78,8 +78,6 @@ class CadastroAluno extends Agenda {
 
     editeAluno(aluno, id) {
 
-        debugger;
-
         const opts = {
             method: "PUT",
             url: `${this.URL}/administracao/${id}`,
@@ -108,7 +106,22 @@ class CadastroAluno extends Agenda {
         this.disposeModal();
     }
 
-    excluaAluno(aluno) {
+    excluaAluno(idAluno) {
+        const opts = {
+            method: "DELETE",
+            url: `${this.URL}/administracao/${idAluno}`,
+            json: true
+        };
+
+        this.request(opts, (err, resp, data) => {
+            if (resp.status !== 201) {
+                alert(err);
+                this.emit("alunoNaoInserido", err);
+            }
+            else {
+                alert("Aluno excluído com sucesso!");
+            }
+        });
 
     }
 

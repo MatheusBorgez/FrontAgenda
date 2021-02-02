@@ -23,12 +23,16 @@ class Administracao extends Agenda {
         this.clickBotaoSalvar();
         this.clickBotaoAdicionar();
         this.botaoEditar();
-        // this.clickBotaoExcluir();
+        this.clickBotaoExcluir();
     }
 
     logout() {
         this.body.querySelector("[botaoShutdown]").onclick = () => this.login.render();
     }
+
+    clickBotaoExcluir() {
+        this.body.querySelector("[botaoExcluir]").onclick = () => this.excluaAluno();
+    }    
 
     clickBotaoSalvar() {
 
@@ -55,22 +59,15 @@ class Administracao extends Agenda {
 
         this.ehEdicao = true;
 
-        function estaSelecionado(aluno) {
-            return aluno.checked;
-        }
-
-        let alunos = Array.prototype.slice.call(this.body.querySelectorAll("[alunoSelecionado]"));
-
-        let alunosSelecionados = alunos.filter(estaSelecionado);
+        let alunosSelecionados = this.obtenhaAlunosSelecionados();
 
         if (alunosSelecionados.length === 0) {
             return;
         }
 
-        if (alunosSelecionados.length === 1) {
-            const modal = document.getElementById("modalCadastroAluno");
-            this.alunoEmEdicao = alunosSelecionados[0].getAttribute("codigoaluno");
-            this.cadastroAluno.preenchaModalEdicao(this.alunoEmEdicao);
+        if (alunosSelecionados.length === 1) {            
+            this.alunoSelecionado = alunosSelecionados[0].getAttribute("codigoaluno");
+            this.cadastroAluno.preenchaModalEdicao(this.alunoSelecionado);
         }
         else {
             alert("Selecione apenas um aluno para edição por favor!");
@@ -98,13 +95,32 @@ class Administracao extends Agenda {
         debugger;
 
         if (this.ehEdicao) {
-            this.cadastroAluno.editeAluno(aluno, this.alunoEmEdicao);
+            this.cadastroAluno.editeAluno(aluno, this.alunoSelecionado);
         }
         else {
             this.cadastroAluno.insiraAluno(aluno);
         }
 
         this.renderGridAlunos();
+    }
+
+    excluaAluno() {
+
+        debugger;
+
+        let alunosSelecionados = this.obtenhaAlunosSelecionados();
+
+        if (alunosSelecionados.length === 0) {
+            return;
+        }
+
+        if (alunosSelecionados.length === 1) {            
+            this.alunoSelecionado = alunosSelecionados[0].getAttribute("codigoaluno");
+            this.cadastroAluno.excluaAluno(this.alunoSelecionado);
+        }
+        else {
+            alert("Selecione apenas um aluno para edição por favor!");
+        }
     }
 
     renderGridAlunos() {
@@ -123,6 +139,16 @@ class Administracao extends Agenda {
                 this.addEventListener();
             }
         });
+    }
+
+    obtenhaAlunosSelecionados() {
+        
+        function estaSelecionado(aluno) {
+            return aluno.checked;
+        }
+
+        let alunos = Array.prototype.slice.call(this.body.querySelectorAll("[alunoSelecionado]"));
+        return alunos.filter(estaSelecionado);
     }
 
     monteEndereco(target) {
