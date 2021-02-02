@@ -22,7 +22,7 @@ class Administracao extends Agenda {
         this.logout();
         this.clickBotaoSalvar();
         this.clickBotaoAdicionar();
-        this.clickBotaoEditar();
+        this.botaoEditar();
         // this.clickBotaoExcluir();
     }
 
@@ -46,16 +46,31 @@ class Administracao extends Agenda {
         this.body.querySelector("[botaoAdicionar]").onclick = () => this.ehEdicao = false;
     }
 
+    botaoEditar() {
+
+        this.body.querySelector("[botaoEditar]").onclick = () => this.clickBotaoEditar()
+    }
+
     clickBotaoEditar() {
 
-        this.body.querySelector("[botaoEditar]").onclick = () => this.ehEdicao = true;
+        this.ehEdicao = true;
 
-        let alunosSelecionados = this.body.querySelectorAll("[alunoSelecionado]");
+        function estaSelecionado(aluno) {
+            return aluno.checked;
+        }
 
-        if (alunosSelecionados.lenght === 1) {
-            const modal = this.body.getElementById("modalCadastroAluno");
-            modal.modal('show');
-            this.cadastroAluno.preenchaModalEdicao(alunosSelecionados[0].getAttribute("codigoaluno"));
+        let alunos = Array.prototype.slice.call(this.body.querySelectorAll("[alunoSelecionado]"));
+
+        let alunosSelecionados = alunos.filter(estaSelecionado);
+
+        if (alunosSelecionados.length === 0) {
+            return;
+        }
+
+        if (alunosSelecionados.length === 1) {
+            const modal = document.getElementById("modalCadastroAluno");
+            this.alunoEmEdicao = alunosSelecionados[0].getAttribute("codigoaluno");
+            this.cadastroAluno.preenchaModalEdicao(this.alunoEmEdicao);
         }
         else {
             alert("Selecione apenas um aluno para edição por favor!");
@@ -80,8 +95,10 @@ class Administracao extends Agenda {
 
     insiraOuEditeAluno(aluno) {
 
+        debugger;
+
         if (this.ehEdicao) {
-            this.cadastroAluno.editeAluno(aluno);
+            this.cadastroAluno.editeAluno(aluno, this.alunoEmEdicao);
         }
         else {
             this.cadastroAluno.insiraAluno(aluno);
@@ -109,9 +126,9 @@ class Administracao extends Agenda {
     }
 
     monteEndereco(target) {
-        return target.querySelector("[cidade]").value + " " +
-            target.querySelector("[bairro]").value + " " +
-            target.querySelector("[numero]").value + " " +
+        return target.querySelector("[cidade]").value + "\n" +
+            target.querySelector("[bairro]").value + "\n" +
+            target.querySelector("[numero]").value + "\n" +
             target.querySelector("[complemento]").value;
     }
 

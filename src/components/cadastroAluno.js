@@ -38,16 +38,7 @@ class CadastroAluno extends Agenda {
     };
 
     preenchaModalEdicao(codigoAluno) {
-        const aluno = this.carregueDadosAluno(codigoAluno);
-        
-        this.body.querySelector("[cpf]").value = aluno.cpf;
-        this.body.querySelector("[nome]").value = aluno.nome;
-        this.body.querySelector("[telefone]").value = aluno.telefone;
-        this.body.querySelector("[email]").value = aluno.email;
-        //this.body.querySelector(e.target),        
-    }
 
-    carregueDadosAluno(codigoAluno) {
         const opts = {
             method: "GET",
             url: `${this.URL}/administracao/${codigoAluno}`,
@@ -55,27 +46,43 @@ class CadastroAluno extends Agenda {
         }
 
         this.request(opts, (err, resp, data) => {
-            if (resp.status !== 201) {
+            if (resp.status !== 200) {
                 alert("Aluno não encontrado");
+                return;
             }
             else {
-                return {
+
+                const aluno = {
                     nome: data.nome,
                     cpf: data.cpf,
                     telefone: data.telefone,
                     email: data.email,
                     endereco: data.endereco,
                     matricula: data.matricula
-                }
+                };
+
+                this.body.querySelector("[cpf]").value = aluno.cpf;
+                this.body.querySelector("[nome]").value = aluno.nome;
+                this.body.querySelector("[telefone]").value = aluno.telefone;
+                this.body.querySelector("[email]").value = aluno.email;
+                this.body.querySelector("[cidade]").value = aluno.endereco.slice(8);
+                this.body.querySelector("[bairro]").value = aluno.endereco.slice(8);
+                this.body.querySelector("[numero]").value = aluno.endereco.slice(8);
+                this.body.querySelector("[complemento]").value = aluno.endereco.slice(8);
+
+                $('#modalCadastroAluno').modal('show');
             }
-        })
+        });
+        //this.body.querySelector(e.target),        
     }
 
-    editeAluno(aluno) {
+    editeAluno(aluno, id) {
+
+        debugger;
 
         const opts = {
             method: "PUT",
-            url: `${this.URL}/administracao/${aluno.id}`,
+            url: `${this.URL}/administracao/${id}`,
             json: true,
             body: {
                 id: aluno.id,
@@ -94,14 +101,29 @@ class CadastroAluno extends Agenda {
                 this.emit("alunoNaoInserido", err);
             }
             else {
-                this.alert("Aluno editado com sucesso!");
+                alert("Aluno editado com sucesso!");
             }
         });
 
+        this.disposeModal();
     }
 
     excluaAluno(aluno) {
 
+    }
+
+    disposeModal() {
+        
+        this.body.querySelector("[cpf]").value = "";
+        this.body.querySelector("[nome]").value = "";
+        this.body.querySelector("[telefone]").value = "";
+        this.body.querySelector("[email]").value = "";
+        this.body.querySelector("[cidade]").value = "";
+        this.body.querySelector("[bairro]").value = "";
+        this.body.querySelector("[numero]").value = "";
+        this.body.querySelector("[complemento]").value = "";
+
+        $('#modalCadastroAluno').modal('hide');
     }
 
 }
