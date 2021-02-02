@@ -14,7 +14,16 @@ class Menu extends Agenda {
     }
 
     addEventListener() {
-        //this.addEventListener("Load", )
+        this.botaoMusculacao();
+        this.botaoMultifuncional();
+    }
+
+    botaoMusculacao() {
+        this.body.querySelector("[botaoEditar]").onclick = () => this.chame()
+    }
+
+    botaoMultifuncional() {
+
     }
 }
 

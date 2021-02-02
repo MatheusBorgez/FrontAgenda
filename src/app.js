@@ -1,12 +1,16 @@
 const Login = require("./components/login.js");
 const Administracao = require("./components/administracao.js");
 const Menu = require("./components/menu.js");
+const Musculacao = require("./components/musculacao.js");
+const Multifuncional = require("./components/multifuncional.js");
 
 class App {
     constructor(body) {
         this.login = new Login(body);
         this.administracao = new Administracao(body);
         this.menu = new Menu(body);
+        this.musculacao = new Musculacao(body);
+        this.multifuncional = new Multifuncional(body);
     }
 
     init() {

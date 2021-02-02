@@ -1,6 +1,5 @@
 const Agenda = require("./agenda.js");
 const Template = require("../templates/administracao.js");
-const TemplateModal = require("../templates/cadastroAluno.js");
 const Login = require("./login.js");
 const CadastroAluno = require("./cadastroAluno.js");
 
@@ -92,8 +91,6 @@ class Administracao extends Agenda {
 
     insiraOuEditeAluno(aluno) {
 
-        debugger;
-
         if (this.ehEdicao) {
             this.cadastroAluno.editeAluno(aluno, this.alunoSelecionado);
         }
@@ -101,12 +98,11 @@ class Administracao extends Agenda {
             this.cadastroAluno.insiraAluno(aluno);
         }
 
+        $('#modalCadastroAluno').modal('hide');
         this.renderGridAlunos();
     }
 
     excluaAluno() {
-
-        debugger;
 
         let alunosSelecionados = this.obtenhaAlunosSelecionados();
 
