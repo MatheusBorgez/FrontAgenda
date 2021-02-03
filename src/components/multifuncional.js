@@ -8,5 +8,11 @@ class Multifuncional extends Agenda {
         this.body = body;
     }
 
-    
+    render() {
+        this.obtenhaHorariosAlunos();
+    }
+
+    obtenhaHorariosAlunos() {
+
+    }
 }

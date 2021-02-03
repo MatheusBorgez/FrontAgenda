@@ -1,5 +1,6 @@
-exports.render = () => {
+exports.render = login => {
     return `
+    <div cpfAluno=${login}></div>
     <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-b-160 p-t-50">
