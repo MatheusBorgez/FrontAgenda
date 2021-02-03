@@ -1,5 +1,6 @@
-exports.render = () => {
-    return `<head>
+exports.render = login => {
+    return `
+    <div cpfAluno=${login}></div>
     <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-b-160 p-t-50">
@@ -9,13 +10,13 @@ exports.render = () => {
                 </span>
 
             <div class="container-menu100-btn">
-                <button onclick="tela_musc()" class="menu100-form-btn2">
+                <button class="menu100-form-btn2" botaoMusculacao>
                             Musculação                            
                 </button>
             </div>
 
             <div class="container-menu100-btn">
-                <button onclick="tela_mult()" class="menu100-form-btn1">
+                <button class="menu100-form-btn1" botaoMultifuncional>
                         Multifuncional
                     </a>
                     </button>

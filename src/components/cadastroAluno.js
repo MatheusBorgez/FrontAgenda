@@ -110,10 +110,12 @@ class CadastroAluno extends Agenda {
         const opts = {
             method: "DELETE",
             url: `${this.URL}/administracao/${idAluno}`,
+            crossDomain: true,
             json: true
         };
 
         this.request(opts, (err, resp, data) => {
+            resp.setHeader('Access-Control-Allow-Origin', '*');
             if (resp.status !== 201) {
                 alert(err);
                 this.emit("alunoNaoInserido", err);
