@@ -1,6 +1,6 @@
 const Agenda = require("./agenda.js");
 const Template = require("../templates/musculacao.js");
-const Menu = require("./components/menu.js");
+const Menu = require("./menu");
 
 class Musculacao extends Agenda {
     constructor(body) {
@@ -8,5 +8,10 @@ class Musculacao extends Agenda {
         this.body = body;
     }
 
+    render() {
+        this.body.innerHTML = Template.render();
+    }
     
 }
+
+module.exports = Musculacao;
