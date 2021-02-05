@@ -8,10 +8,29 @@ class Musculacao extends Agenda {
         this.body = body;
     }
 
-    render() {
+    render(data) {
+        obtenhaHorariosAlunos(data);
         this.body.innerHTML = Template.render();
     }
     
+    obtenhaHorariosAlunos(data) {
+        const opts = {
+            method: "GET",
+            url: `${this.URL}/sala/${data.idAluno}/${data.sala}`,
+            json: true
+        };
+
+        this.request(opts, (err, resp, data) => {
+            if (err) {
+                this.emit("error", "não foi possível carregar os alunos");
+            }
+            else {
+                this.body.innerHTML = Template.render(data.horarios);
+                this.addEventListener();
+            }
+        });
+    }
+
 }
 
 module.exports = Musculacao;

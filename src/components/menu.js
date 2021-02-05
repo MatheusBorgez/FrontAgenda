@@ -43,11 +43,21 @@ class Menu extends Agenda {
     }
 
     botaoMusculacao() {
-        this.body.querySelector("[botaoMusculacao]").onclick = () => this.musculacao.render();
+        const data = {
+            idAluno: this.codigoAluno,
+            sala: "musculacao"
+        };
+
+        this.body.querySelector("[botaoMusculacao]").onclick = () => this.musculacao.render(data);
     }
 
     botaoMultifuncional() {
-        this.body.querySelector("[botaoMultifuncional]").onclick = () => this.multifuncional.render();
+        const data = {
+            idAluno: this.codigoAluno,
+            sala: "multifuncional"
+        };
+
+        this.body.querySelector("[botaoMultifuncional]").onclick = () => this.multifuncional.render(data);
     }
 }
 
