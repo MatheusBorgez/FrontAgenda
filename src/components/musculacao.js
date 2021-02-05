@@ -1,19 +1,21 @@
-const Agenda = require("./agenda.js");
 const Template = require("../templates/musculacao.js");
-const Menu = require("./menu");
+const Sala = require("./sala.js");
 
-class Musculacao extends Agenda {
+class Musculacao extends Sala {
     constructor(body) {
         super();
         this.body = body;
     }
 
     render(data) {
-        obtenhaHorariosAlunos(data);
+        this.obtenhaHorariosAlunos(data);
         this.body.innerHTML = Template.render();
     }
     
     obtenhaHorariosAlunos(data) {
+
+        debugger;
+
         const opts = {
             method: "GET",
             url: `${this.URL}/sala/${data.idAluno}/${data.sala}`,

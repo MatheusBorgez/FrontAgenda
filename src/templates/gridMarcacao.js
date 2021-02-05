@@ -28,9 +28,9 @@ const dropDownHorario = `
 `;
 
 
-exports.render = () => {
+exports.render = horarios => {
     return `
-    <!--cabeçalho-->
+    <!--cabeçalho--> 
 <div class="container  border border-dark  mt-5 col-6">
     <div class="row ">
 
@@ -124,14 +124,14 @@ exports.render = () => {
 <div class=" container col-sm">
     <div class="row">
         <div class="centered">
-            <button type="button" class="btn btn-dark" onclick="action_confirm()">
-                    Confirmar
-                 </button>
 
+            <button type="submit" class="btn btn-dark" botaoConfirmar>
+                Confirmar
+             </button>
 
-            <button type="button" class="btn btn-dark ml-5" onclick="action_cancel()">
-                    Cancelar
-                 </button>
+            <button type="button" class="btn btn-dark ml-5" botaoCancelar>
+                Cancelar
+            </button>
 
         </div>
 

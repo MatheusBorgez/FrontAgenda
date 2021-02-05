@@ -1,6 +1,6 @@
 const GridMarcacao = require('./gridMarcacao.js');
 
-exports.render = () => {
+exports.render = horarios => {
     return `
     <div class="container ">
     <div>
@@ -10,7 +10,7 @@ exports.render = () => {
     </div>
 </div>
 
-${GridMarcacao.render()}
+${GridMarcacao.render(horarios)}
 
 `;
 }
