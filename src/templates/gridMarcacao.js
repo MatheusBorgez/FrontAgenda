@@ -30,7 +30,6 @@ const dropDownHorario = `
 
 exports.render = horarios => {
     return `
-    <!--cabeçalho--> 
 <div class="container  border border-dark  mt-5 col-6">
     <div class="row ">
 
@@ -40,7 +39,7 @@ exports.render = horarios => {
 
     </div>
 </div>
-<!--segunda-->
+
 <div class="mb-3">
     <div class="container border border-dark back-gridrow1 text-dark col-6">
         <div class="row ">
@@ -53,8 +52,7 @@ exports.render = horarios => {
             
         </div>
     </div>
-
-    <!--terça-->
+    
     <div class="container col-6 border border-dark back-gridrow2 text-dark">
         <div class="row">
 
@@ -67,7 +65,6 @@ exports.render = horarios => {
         </div>
     </div>
 
-    <!--quarta-->
     <div class="col-6 container border border-dark back-gridrow1 text-dark">
         <div class="row">
 
@@ -80,7 +77,6 @@ exports.render = horarios => {
         </div>
     </div>
 
-    <!--Quinta-->
     <div class="col-6 container border border-dark back-gridrow2 text-dark">
         <div class="row">
 
@@ -93,7 +89,6 @@ exports.render = horarios => {
         </div>
     </div>
 
-    <!--Sexta-->
     <div class="col-6 container border border-dark back-gridrow1 text-dark">
         <div class="row">
 
@@ -106,7 +101,6 @@ exports.render = horarios => {
         </div>
     </div>
 
-    <!--Sábado-->
     <div class="col-6 container border border-dark back-gridrow2 text-dark">
         <div class="row">
 

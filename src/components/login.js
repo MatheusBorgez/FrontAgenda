@@ -57,7 +57,7 @@ class Login extends Agenda {
                 this.emit("loginAdmin", data);
             }
             else {
-                this.emit("loginAluno", data);
+                this.emit("loginAluno", data.login);
             }
         }
     }

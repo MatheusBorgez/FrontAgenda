@@ -10,6 +10,7 @@ class Multifuncional extends Sala {
     render(data) {
         this.body.innerHTML = Template.render();
         this.obtenhaHorariosAlunos(data);
+        this.login = data;
     }
 }
 
