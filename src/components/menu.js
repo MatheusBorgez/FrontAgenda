@@ -23,11 +23,12 @@ class Menu extends Agenda {
     addEventListener() {
         this.botaoMusculacao();
         this.botaoMultifuncional();
+        this.logout();
     }
 
     logout() {
 
-        this.body.querySelector("[botaoShutdown]").onclick = () => document.location.reload(true);
+        this.body.querySelector("[botaoshutdown]").onclick = () => document.location.reload(true);
         debugger;
     }
 
