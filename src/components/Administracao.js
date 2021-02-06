@@ -26,7 +26,7 @@ class Administracao extends Agenda {
     }
 
     logout() {
-        this.body.querySelector("[botaoShutdown]").onclick = () => this.login.render();
+        this.body.querySelector("[botaoShutdown]").onclick = () => document.location.reload(true);
     }
 
     clickBotaoExcluir() {

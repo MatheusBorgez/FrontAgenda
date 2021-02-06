@@ -26,7 +26,9 @@ class App {
     loginEvents() {
         this.login.on("error", () => alert("Usuario ou senha incorretos"));
         this.login.on("loginAdmin", () => this.administracao.render());
-        this.login.on("loginAluno", data => this.menu.render(data.login));
+        this.login.on("loginAluno", login => this.menu.render(login));
+        this.login.on("multifuncional", data => this.multifuncional.render(data));
+        this.login.on("musculacao", data => this.musculacao.render(data));
         this.login.on("alunoNaoInserido", () => alert("Ops, o aluno não pode ser inserido"));
         this.login.on("alunoInseridoSucesso", () => alert("Aluno inserido com sucesso"));
     }
