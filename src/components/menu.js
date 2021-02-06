@@ -12,15 +12,24 @@ class Menu extends Agenda {
         this.multifuncional = new Multifuncional(body);
     }
 
+
     render(login) {
         this.body.innerHTML = Template.render(login);
         this.obtenhaCodigoAluno(login);
         this.addEventListener();
     }
 
+
     addEventListener() {
         this.botaoMusculacao();
         this.botaoMultifuncional();
+        this.logout();
+    }
+
+    logout() {
+
+        this.body.querySelector("[botaoshutdown]").onclick = () => document.location.reload(true);
+        debugger;
     }
 
     obtenhaCodigoAluno(login) {
@@ -37,8 +46,7 @@ class Menu extends Agenda {
             if (resp.status !== 200) {
                 alert("Aluno não encontrado");
                 return;
-            }
-            else {
+            } else {
                 this.codigoAluno = data.id;
             }
         });
