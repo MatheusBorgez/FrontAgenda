@@ -48,65 +48,32 @@ class Sala extends Agenda {
     insireOuAtualizeHorario(login) {
 
         let dropDownHorarios = Array.prototype.slice.call(this.body.querySelectorAll("[selecaoHorario]"));
+        let diasSemana = Array.prototype.slice.call(this.body.querySelectorAll("[diaSemana]"));
 
-        const opts = {
+        var opts = {
             method: "POST",
             url: `${this.URL}/sala`,
             json: true,
-            body: {
-                horarios: [
-                    {
-                        faixaHorario: dropDownHorarios[0].value,
-                        idAluno: login.idAluno,
-                        diaSemana: "segunda",
-                        sala: login.sala
-                    },
-                    {
-                        faixaHorario: dropDownHorarios[1].value,
-                        idAluno: login.idAluno,
-                        diaSemana: "terca",
-                        sala: login.sala
-                    },
-                    {
-                        faixaHorario: dropDownHorarios[2].value,
-                        idAluno: login.idAluno,
-                        diaSemana: "quarta",
-                        sala: login.sala
-                    },
-                    {
-                        faixaHorario: dropDownHorarios[3].value,
-                        idAluno: login.idAluno,
-                        diaSemana: "quinta",
-                        sala: login.sala
-                    },
-                    {
-                        faixaHorario: dropDownHorarios[4].value,
-                        idAluno: login.idAluno,
-                        diaSemana: "sexta",
-                        sala: login.sala
-                    },
-                    {
-                        faixaHorario: dropDownHorarios[5].value,
-                        idAluno: login.idAluno,
-                        diaSemana: "sabado",
-                        sala: login.sala
-                    }
-                ]
+            body: { 
+                faixaHorario: "",
+                idAluno: login.idAluno,
+                diaSemana: "",
+                sala: login.sala
             }
-        };
+        }
 
-        debugger;
+        for (let index = 0; index < dropDownHorarios.length; index++) {
 
-        this.request(opts, (err, resp, data) => {
-            if (resp.status !== 201) {
-                this.emit("alunoNaoInserido", err);
-            }
-            else {
-                this.alert("Horario inserido com sucesso!");
-            }
-        });
+            opts.body.faixaHorario = dropDownHorarios[index].value;
+            opts.body.diaSemana = diasSemana[index].getAttribute('diasemana');
+
+            this.request(opts, (err, resp, data) => {
+                if (resp.status !== 201) {
+                    return this.emit("alunoNaoInserido", err);
+                }
+            });
+        }
     }
-
 }
 
 module.exports = Sala;
