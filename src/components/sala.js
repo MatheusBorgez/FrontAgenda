@@ -1,42 +1,110 @@
 const Agenda = require("./agenda.js");
-const Menu = require("./menu.js");
 
 class Sala extends Agenda {
     constructor(body) {
         super();
         this.body = body;
-    }    
-
-    addEventListener() {
-        this.confirmarHorario();
     }
 
-    obtenhaHorariosAlunos(data) {
+    addEventListener() {
+        this.botaoConfirmar();
+        this.botaoCancelar()
+    }
+
+    obtenhaHorariosAlunos(login) {
         const opts = {
             method: "GET",
-            url: `${this.URL}/sala/${data.idAluno}/${data.sala}`,
+            url: `${this.URL}/sala/${login.idAluno}/${login.sala}`,
             json: true
         };
 
-        this.request(opts, (err, resp, data) => {            
-            
-            if (data.horarios) {                
-
-                var dropDownHorarios = Array.prototype.slice.call(this.body.querySelectorAll("[selecaoHorario]"));
-
-                for(let index; index < dropDownHorarios.length; index++) {
-                    dropDownHorarios[index].value = data.horarios[index].faixaHorario;
-                }
-            }
+        this.request(opts, (err, resp, data) => {
+            this.atualizeDropDowns(data.horarios);
         });
     }
 
-    confirmarHorario() {
-        this.body.querySelector(['botaoCancelar']).onclick = insireOuAtualizeHorario();        
+    atualizeDropDowns(horarios) {
+
+        if (horarios) {
+
+            let dropDownHorarios = Array.prototype.slice.call(this.body.querySelectorAll("[selecaoHorario]"));
+
+            for (let index = 0; index < dropDownHorarios.length; index++) {
+
+                dropDownHorarios[index].value = horarios[index].faixaHorario;
+
+            }
+        }
     }
 
-    insireOuAtualizeHorario() {
+    botaoConfirmar(data) {
+        this.body.querySelector("[botaoConfirmar]").onclick = () => this.insireOuAtualizeHorario(this.login);
+    }
 
+    botaoCancelar() {
+        this.body.querySelector("[botaoCancelar]").onclick = () => this.emit("loginAluno", this.login.login);
+    }
+
+    insireOuAtualizeHorario(login) {
+
+        let dropDownHorarios = Array.prototype.slice.call(this.body.querySelectorAll("[selecaoHorario]"));
+
+        const opts = {
+            method: "POST",
+            url: `${this.URL}/sala`,
+            json: true,
+            body: {
+                horarios: [
+                    {
+                        faixaHorario: dropDownHorarios[0].value,
+                        idAluno: login.idAluno,
+                        diaSemana: "segunda",
+                        sala: login.sala
+                    },
+                    {
+                        faixaHorario: dropDownHorarios[1].value,
+                        idAluno: login.idAluno,
+                        diaSemana: "terca",
+                        sala: login.sala
+                    },
+                    {
+                        faixaHorario: dropDownHorarios[2].value,
+                        idAluno: login.idAluno,
+                        diaSemana: "quarta",
+                        sala: login.sala
+                    },
+                    {
+                        faixaHorario: dropDownHorarios[3].value,
+                        idAluno: login.idAluno,
+                        diaSemana: "quinta",
+                        sala: login.sala
+                    },
+                    {
+                        faixaHorario: dropDownHorarios[4].value,
+                        idAluno: login.idAluno,
+                        diaSemana: "sexta",
+                        sala: login.sala
+                    },
+                    {
+                        faixaHorario: dropDownHorarios[5].value,
+                        idAluno: login.idAluno,
+                        diaSemana: "sabado",
+                        sala: login.sala
+                    }
+                ]
+            }
+        };
+
+        debugger;
+
+        this.request(opts, (err, resp, data) => {
+            if (resp.status !== 201) {
+                this.emit("alunoNaoInserido", err);
+            }
+            else {
+                this.alert("Horario inserido com sucesso!");
+            }
+        });
     }
 
 }

@@ -25,6 +25,8 @@ class Menu extends Agenda {
 
     obtenhaCodigoAluno(login) {
 
+        this.login = login;
+
         const opts = {
             method: "GET",
             url: `${this.URL}/menu/${login}`,
@@ -43,21 +45,33 @@ class Menu extends Agenda {
     }
 
     botaoMusculacao() {
-        const data = {
-            idAluno: this.codigoAluno,
-            sala: "musculacao"
-        };
-
-        this.body.querySelector("[botaoMusculacao]").onclick = () => this.musculacao.render(data);
+        this.body.querySelector("[botaoMusculacao]").onclick = () => this.renderMusculacao(); 
     }
 
-    botaoMultifuncional() {
+    renderMusculacao() {
+        debugger;
+
+        const data = {
+            idAluno: this.codigoAluno,
+            sala: "musculacao",
+            login: this.login
+        };
+
+        this.musculacao.render(data);
+    }
+
+    botaoMultifuncional() {        
+        this.body.querySelector("[botaoMultifuncional]").onclick = () => this.renderMultifuncional();
+    }
+
+    renderMultifuncional() {
+
         const data = {
             idAluno: this.codigoAluno,
             sala: "multifuncional"
         };
 
-        this.body.querySelector("[botaoMultifuncional]").onclick = () => this.multifuncional.render(data);
+        this.multifuncional.render(data);
     }
 }
 
