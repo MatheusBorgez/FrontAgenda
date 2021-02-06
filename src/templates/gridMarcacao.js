@@ -44,7 +44,7 @@ exports.render = horarios => {
     <div class="container border border-dark back-gridrow1 text-dark col-6">
         <div class="row ">
 
-            <div class="col-sm mt-4">
+            <div class="col-sm mt-4" diaSemana="segunda">
                 Segunda-feira:
             </div>
             
@@ -56,7 +56,7 @@ exports.render = horarios => {
     <div class="container col-6 border border-dark back-gridrow2 text-dark">
         <div class="row">
 
-            <div class="col-sm">
+            <div class="col-sm" diaSemana="terca">
                 Terça-feira:
             </div>
 
@@ -68,7 +68,7 @@ exports.render = horarios => {
     <div class="col-6 container border border-dark back-gridrow1 text-dark">
         <div class="row">
 
-            <div class="col-sm">
+            <div class="col-sm" diaSemana="quarta">
                 Quarta-feira:
             </div>
 
@@ -80,7 +80,7 @@ exports.render = horarios => {
     <div class="col-6 container border border-dark back-gridrow2 text-dark">
         <div class="row">
 
-            <div class="col-sm">
+            <div class="col-sm" diaSemana="quinta">
                 Quinta-feira:
             </div>
 
@@ -92,7 +92,7 @@ exports.render = horarios => {
     <div class="col-6 container border border-dark back-gridrow1 text-dark">
         <div class="row">
 
-            <div class="col-sm">
+            <div class="col-sm" diaSemana="sexta">
                 Sexta-feira:
             </div>
             
@@ -104,7 +104,7 @@ exports.render = horarios => {
     <div class="col-6 container border border-dark back-gridrow2 text-dark">
         <div class="row">
 
-            <div class="col-6">
+            <div class="col-6" diaSemana="sabado">
                 Sábado:
             </div>
 
