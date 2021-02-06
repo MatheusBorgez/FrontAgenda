@@ -53,11 +53,11 @@ class Menu extends Agenda {
     }
 
     botaoMusculacao() {
-        this.body.querySelector("[botaoMusculacao]").onclick = () => this.renderMusculacao(); 
+        this.body.querySelector("[botaoMusculacao]").onclick = () => this.renderMusculacao();
     }
 
     renderMusculacao() {
-        debugger;
+
 
         const data = {
             idAluno: this.codigoAluno,
@@ -68,7 +68,7 @@ class Menu extends Agenda {
         this.musculacao.render(data);
     }
 
-    botaoMultifuncional() {        
+    botaoMultifuncional() {
         this.body.querySelector("[botaoMultifuncional]").onclick = () => this.renderMultifuncional();
     }
 
