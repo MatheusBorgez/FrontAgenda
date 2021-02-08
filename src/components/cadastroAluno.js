@@ -65,15 +65,22 @@ class CadastroAluno extends Agenda {
                 this.body.querySelector("[nome]").value = aluno.nome;
                 this.body.querySelector("[telefone]").value = aluno.telefone;
                 this.body.querySelector("[email]").value = aluno.email;
-                this.body.querySelector("[cidade]").value = aluno.endereco.slice(8);
-                this.body.querySelector("[bairro]").value = aluno.endereco.slice(8);
-                this.body.querySelector("[numero]").value = aluno.endereco.slice(8);
-                this.body.querySelector("[complemento]").value = aluno.endereco.slice(8);
+                this.monteEndereco(aluno.endereco);
 
                 $('#modalCadastroAluno').modal('show');
             }
         });
         //this.body.querySelector(e.target),        
+    }
+
+    monteEndereco(endereco) {
+
+        let arrayEndereco = endereco.split('\n');
+
+        this.body.querySelector("[cidade]").value = arrayEndereco[0];
+        this.body.querySelector("[bairro]").value = arrayEndereco[1];
+        this.body.querySelector("[numero]").value = arrayEndereco[2];
+        this.body.querySelector("[complemento]").value = arrayEndereco[3];
     }
 
     editeAluno(aluno, id) {
@@ -128,7 +135,7 @@ class CadastroAluno extends Agenda {
     }
 
     disposeModal() {
-        
+
         this.body.querySelector("[cpf]").value = "";
         this.body.querySelector("[nome]").value = "";
         this.body.querySelector("[telefone]").value = "";
