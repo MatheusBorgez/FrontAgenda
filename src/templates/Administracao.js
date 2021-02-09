@@ -26,7 +26,7 @@ const renderGridAlunos = alunos => {
 }
 
 exports.render = alunos => {
-    
+
     return `
 
     <div class="img-fluid text-right mr-5 mt-5 text-white botaoShutdown" botaoShutdown>
@@ -43,6 +43,16 @@ exports.render = alunos => {
     </div>
 
     <div class="container">
+    <div class="row ">
+                <div class="col-sm">
+                    <div id="divBusca" class="busca">
+                        <input type="search" id="txtBusca" placeholder="Buscar..." />
+                        <a class="" href="#">
+                            <img src="./images/pesquisa.png" id="btnBusca" alt="Buscar" />
+                        </a>
+                    </div>
+                </div>
+            </div>
     
         <div class="row  border border-white back-grid text-white">
             <div class="col-sm text-center">
@@ -82,5 +92,5 @@ exports.render = alunos => {
             </div>
         </div>
     </div>    
-    `; 
+    `;
 }
