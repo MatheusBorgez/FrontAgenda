@@ -49,12 +49,7 @@ class Sala extends Agenda {
     }
 
     botaoCancelar() {
-        this.body.querySelector("[botaoCancelar]").onclick = () => this.volteMenu(); 
-    }
-
-    volteMenu() {
-        console.log(this.user);
-        this.emit("loginAluno", this.user.login);
+        this.body.querySelector("[botaoCancelar]").onclick = () => document.location.reload(true);
     }
 
     insireOuAtualizeHorario(login) {
