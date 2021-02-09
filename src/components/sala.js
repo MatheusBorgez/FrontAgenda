@@ -1,14 +1,16 @@
 const Agenda = require("./agenda.js");
+const Login = require("./login.js");
 
 class Sala extends Agenda {
     constructor(body) {
         super();
-        this.body = body;        
+        this.body = body;
+        this.login = new Login(body);
     }
 
     addEventListener() {
         this.botaoConfirmar();
-        this.botaoCancelar()
+        this.botaoCancelar();
         this.logout();
     }
 
@@ -43,11 +45,16 @@ class Sala extends Agenda {
     }
 
     botaoConfirmar(data) {
-        this.body.querySelector("[botaoConfirmar]").onclick = () => this.insireOuAtualizeHorario(this.login);
+        this.body.querySelector("[botaoConfirmar]").onclick = () => this.insireOuAtualizeHorario(this.user);
     }
 
     botaoCancelar() {
-        this.body.querySelector("[botaoCancelar]").onclick = () => this.emit("loginAluno", this.login.login);
+        this.body.querySelector("[botaoCancelar]").onclick = () => this.volteMenu(); 
+    }
+
+    volteMenu() {
+        console.log(this.user);
+        this.emit("loginAluno", this.user.login);
     }
 
     insireOuAtualizeHorario(login) {
@@ -78,6 +85,7 @@ class Sala extends Agenda {
                 }
             });
         }
+
     }
 }
 

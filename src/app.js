@@ -3,6 +3,7 @@ const Administracao = require("./components/administracao.js");
 const Menu = require("./components/menu.js");
 const Musculacao = require("./components/musculacao.js");
 const Multifuncional = require("./components/multifuncional.js");
+const Sala = require("./components/sala.js");
 
 class App {
     constructor(body) {
@@ -27,6 +28,7 @@ class App {
         this.login.on("error", () => alert("Usuario ou senha incorretos"));
         this.login.on("loginAdmin", () => this.administracao.render());
         this.login.on("loginAluno", login => this.menu.render(login));
+        this.sala.on("loginAluno", login => this.menu.render(login));
         this.login.on("multifuncional", data => this.multifuncional.render(data));
         this.login.on("musculacao", data => this.musculacao.render(data));
         this.login.on("alunoNaoInserido", () => alert("Ops, o aluno não pode ser inserido"));

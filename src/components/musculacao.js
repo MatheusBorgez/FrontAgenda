@@ -10,7 +10,7 @@ class Musculacao extends Sala {
     render(data) {
         this.body.innerHTML = Template.render();
         this.obtenhaHorariosAlunos(data);
-        this.login = data;
+        this.user = data;
         this.addEventListener();
     }
 
