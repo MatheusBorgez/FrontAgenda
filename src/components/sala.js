@@ -3,13 +3,18 @@ const Agenda = require("./agenda.js");
 class Sala extends Agenda {
     constructor(body) {
         super();
-        this.body = body;
+        this.body = body;        
     }
 
     addEventListener() {
         this.botaoConfirmar();
         this.botaoCancelar()
+        this.logout();
     }
+
+    logout() {
+        this.body.querySelector("[botaoShutdown]").onclick = () => document.location.reload(true);
+    }    
 
     obtenhaHorariosAlunos(login) {
         const opts = {

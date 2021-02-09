@@ -70,7 +70,6 @@ class CadastroAluno extends Agenda {
                 $('#modalCadastroAluno').modal('show');
             }
         });
-        //this.body.querySelector(e.target),        
     }
 
     monteEndereco(endereco) {
@@ -122,7 +121,6 @@ class CadastroAluno extends Agenda {
         };
 
         this.request(opts, (err, resp, data) => {
-            resp.setHeader('Access-Control-Allow-Origin', '*');
             if (resp.status !== 201) {
                 alert(err);
                 this.emit("alunoNaoInserido", err);
