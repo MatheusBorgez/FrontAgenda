@@ -1,4 +1,3 @@
-
 const inputEndereco = `
                     <div class="row">
                         <div class="col-sm">
@@ -19,7 +18,7 @@ const inputEndereco = `
                         </div>
 
                         <div class="col-sm">
-                            <label for="complemento">Complemento</label>
+                            <label for="complemento">Logradouro</label>
                             <input class="border border-dark" type="text" complemento/>
                         </div>
                     </div>
