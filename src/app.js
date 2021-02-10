@@ -12,6 +12,7 @@ class App {
         this.menu = new Menu(body);
         this.musculacao = new Musculacao(body);
         this.multifuncional = new Multifuncional(body);
+        this.sala = new Sala(body);
     }
 
     init() {
