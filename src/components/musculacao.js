@@ -6,19 +6,12 @@ class Musculacao extends Sala {
         super();
         this.body = body;
     }
-    addEventListener() {
-        this.logout();
-    }
-
-    logout() {
-        this.body.querySelector("[botaoShutdown]").onclick = () => document.location.reload(true);
-    }
 
     render(data) {
         this.body.innerHTML = Template.render();
         this.obtenhaHorariosAlunos(data);
+        this.user = data;
         this.addEventListener();
-        this.login = data;
     }
 
 }

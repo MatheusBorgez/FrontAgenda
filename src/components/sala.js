@@ -1,15 +1,22 @@
 const Agenda = require("./agenda.js");
+const Login = require("./login.js");
 
 class Sala extends Agenda {
     constructor(body) {
         super();
         this.body = body;
+        this.login = new Login(body);
     }
 
     addEventListener() {
         this.botaoConfirmar();
-        this.botaoCancelar()
+        this.botaoCancelar();
+        this.logout();
     }
+
+    logout() {
+        this.body.querySelector("[botaoShutdown]").onclick = () => document.location.reload(true);
+    }    
 
     obtenhaHorariosAlunos(login) {
         const opts = {
@@ -38,11 +45,11 @@ class Sala extends Agenda {
     }
 
     botaoConfirmar(data) {
-        this.body.querySelector("[botaoConfirmar]").onclick = () => this.insireOuAtualizeHorario(this.login);
+        this.body.querySelector("[botaoConfirmar]").onclick = () => this.insireOuAtualizeHorario(this.user);
     }
 
     botaoCancelar() {
-        this.body.querySelector("[botaoCancelar]").onclick = () => this.emit("loginAluno", this.login.login);
+        this.body.querySelector("[botaoCancelar]").onclick = () => document.location.reload(true);
     }
 
     insireOuAtualizeHorario(login) {
@@ -73,6 +80,7 @@ class Sala extends Agenda {
                 }
             });
         }
+
     }
 }
 

@@ -27,9 +27,7 @@ class Menu extends Agenda {
     }
 
     logout() {
-
         this.body.querySelector("[botaoshutdown]").onclick = () => document.location.reload(true);
-        debugger;
     }
 
     obtenhaCodigoAluno(login) {
