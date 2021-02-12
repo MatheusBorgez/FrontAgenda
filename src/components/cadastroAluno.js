@@ -108,14 +108,18 @@ class CadastroAluno extends Agenda {
 
     excluaAluno(idAluno) {
         const opts = {
-            method: "DELETE",
-            url: `${this.URL}/administracao/${idAluno}`,
+            method: "GET",
+            url: `${this.URL}/administracao/delete/${idAluno}`,
             crossDomain: true,
             json: true
         };
 
+        console.log(opts);
+
         this.request(opts, (err, resp, data) => {
-            resp.setHeader('Access-Control-Allow-Origin', '*');
+            
+            console.log(resp.status);
+
             if (resp.status !== 201) {
                 alert(err);
                 this.emit("alunoNaoInserido", err);

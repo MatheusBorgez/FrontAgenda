@@ -46,29 +46,34 @@ exports.render = alunos => {
     <div class="row ">
                 <div class="col-sm">
                     <div id="divBusca" class="busca">
-                        <input type="search" id="txtBusca" placeholder="Buscar..." />
+                    <input type="search" id="txtBusca" placeholder="Buscar..." />                    
                         <a class="" href="#">
                             <img src="./images/pesquisa.png" id="btnBusca" alt="Buscar" />
                         </a>
                     </div>
                 </div>
-            </div>
-    
-        <div class="row  border border-white back-grid text-white">
-            <div class="col-sm text-center">
-                Nome
-            </div>
+            </div>            
 
-            <div class="col-sm text-center">
-                CPF
-            </div>
+            <div class="container mt-1">
 
-            <div class="col-sm text-center">
-                Matrícula
-            </div>
-        </div>
+                <div class="row  border border-white back-grid text-white">
+                    <div class="col-sm text-center">
+                        Nome
+                    </div>
 
-        ${renderGridAlunos(alunos)}
+                    <div class="col-sm text-center">
+                        CPF
+                    </div>
+
+                    <div class="col-sm text-center">
+                        Matrícula
+                    </div>
+                </div>
+
+
+            ${renderGridAlunos(alunos)}
+
+            </div>
 
         <div class="container col-sm mt-3">
             <div class="row">
