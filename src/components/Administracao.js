@@ -149,13 +149,16 @@ class Administracao extends Agenda {
         else {
             alert("Selecione apenas um aluno para edição por favor!");
         }
+
+        this.renderGridAlunos();
     }
 
     renderGridAlunos() {
         const opts = {
             method: "GET",
             url: `${this.URL}/administracao`,
-            json: true
+            json: true,
+            crossDomain: true
         };
 
         this.request(opts, (err, resp, data) => {
