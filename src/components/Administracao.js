@@ -23,10 +23,15 @@ class Administracao extends Agenda {
         this.clickBotaoAdicionar();
         this.botaoEditar();
         this.clickBotaoExcluir();
+        this.botaoPesquisa();
     }
 
     logout() {
         this.body.querySelector("[botaoShutdown]").onclick = () => document.location.reload(true);
+    }
+
+    botaoPesquisa() {
+        this.body.querySelector('[botaoBuscar]').onclick = () => this.filtreAlunos();
     }
 
     clickBotaoExcluir() {
@@ -71,6 +76,33 @@ class Administracao extends Agenda {
         else {
             alert("Selecione apenas um aluno para edição por favor!");
         }
+    }
+
+    filtreAlunos() {
+
+        let termoBusca = this.body.querySelector('[labelBusca]').value;
+
+        if(!termoBusca) {
+            this.renderGridAlunos();
+            return;
+        }
+
+        const opts = {
+            method: "GET",
+            url: `${this.URL}/administracao/busca/${termoBusca}`,
+            crossDomain: true,
+            json: true
+        };
+
+        this.request(opts, (err, resp, data) => {
+            if (err) {
+                this.emit("error", "não foi possível carregar os alunos");
+            }
+            else {
+                this.body.innerHTML = Template.render(data.alunos);
+                this.addEventListener();
+            }
+        });
     }
 
     obtenhaDadosModal(e) {

@@ -45,10 +45,11 @@ exports.render = alunos => {
     <div class="container">
     <div class="row ">
                 <div class="col-sm">
-                    <div id="divBusca" class="busca">
-                    <input type="search" id="txtBusca" placeholder="Buscar..." />                    
+
+                    <div id="divBusca" class="busca" busca >
+                        <input type="search" id="txtBusca" placeholder="Buscar..." labelBusca />
                         <a class="" href="#">
-                            <img src="./images/pesquisa.png" id="btnBusca" alt="Buscar" />
+                            <img src="./images/pesquisa.png" id="btnBusca" alt="Buscar" botaoBuscar />
                         </a>
                     </div>
                 </div>
